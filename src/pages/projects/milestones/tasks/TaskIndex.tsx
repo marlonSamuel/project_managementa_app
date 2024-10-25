@@ -24,7 +24,7 @@ export const TaskIndex = () => {
     const { milestone_id } = useParams();
     const {project} = useContext(ProjectContext);
     const {setRoutesBC} = useContext(UIContext);
-    const {setAction, action, update, setItems: setTasks, remove} = useContext(TaskContext);
+    const {setAction, action, update, setItems: setTasks, remove, setFilters} = useContext(TaskContext);
     const [open, setOpen] = useState(false);
     const [openSub, setOpenSub] = useState(false);
     const {user} = useContext(AuthContext);
@@ -44,7 +44,15 @@ export const TaskIndex = () => {
         getByMilestone(parseInt(milestone_id))
         getById(parseInt(milestone_id))
       }else{
-        getAll()
+        if(user?.role === 'admin'){
+          getAll()
+        }else{
+          setFilters({
+            user_id: user?.id,
+            project_id: undefined
+          })
+        }
+        
       } 
     }, [milestone_id])
 

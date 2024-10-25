@@ -36,6 +36,10 @@ export const FilterTask = () => {
             }else{
                 getAll();
             }
+        }else{
+            if(filter.user_id){
+                getAll()
+            }
         }
     },[filter])
 

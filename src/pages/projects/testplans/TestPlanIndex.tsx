@@ -29,7 +29,7 @@ export const TestPlanIndex = () => {
   //llamar hook para application
   const {loading} = useContext(UIContext);
   const {user} = useContext(AuthContext);
-  const {items, remove, getAll, update} = useTestPlan();
+  const {items, remove, getAll, update, _getAll} = useTestPlan();
   const {items: users, getAll: getUsers} = useUser(); 
 
   const [visible, setVisible] = useState(false);
@@ -112,7 +112,12 @@ export const TestPlanIndex = () => {
   ];
 
   useEffect(() => {
-    getAll();
+    if(user?.role === 'admin'){
+      getAll();
+    }else{
+      _getAll(user?.id);
+    }
+    
     getUsers();
   }, []);
 

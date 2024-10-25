@@ -23,9 +23,9 @@ export const useDefect = () => {
     }
     
     //lista inicial de data
-    const _getAll = async() => {
+    const _getAll = async(user_id = 0) => {
         setLoading(true);
-        await api.get<IDefect[]>('/defects').then(r=> {
+        await api.get<IDefect[]>('/defects?user_id='+user_id).then(r=> {
             setItems(r.data);
         }).catch(e=>{
             

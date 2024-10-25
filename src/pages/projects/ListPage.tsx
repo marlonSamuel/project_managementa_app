@@ -70,6 +70,21 @@ export const ListPage = () => {
             key: 'end_date',
         },
         {
+          title: 'Repositorio',
+          dataIndex: 'repository_name',
+          key: 'repository_name',
+      },
+      {
+        title: 'Url del repositorio',
+        dataIndex: 'url_repository',
+        key: 'url_repository',
+        render: (_, record: IProject) => (
+          <>
+            <a href={record.url_repository} target='blank'>ir a repositorio</a>
+          </>
+        ),
+    },
+        {
         title: 'Estado',
             key: 'status',
             dataIndex: 'status',

@@ -127,6 +127,42 @@ export const CreateOrEdit = ({ visible, onFinish, formData }: IForm) => {
             </Row>
 
             <Row gutter={16}>
+                <Col className="gutter-row" xs={{span: 24}} lg={{span: 24}}>
+                    <Form.Item
+                        name="repository_name"
+                        key="repository_name"
+                        label="Nombre del repositorio git"
+                        rules={[
+                        {
+                            required: true,
+                            message: 'el campo nombre de repositorio es requerido!',
+                        },
+                        ]}
+                    >
+                <Input name='name' />
+                </Form.Item>
+                </Col>
+            </Row>
+
+            <Row gutter={16}>
+                <Col className="gutter-row" xs={{span: 24}} lg={{span: 24}}>
+                    <Form.Item
+                        name="url_repository"
+                        key="url_repository"
+                        label="Url del repositorio"
+                        rules={[
+                        {
+                            required: true,
+                            message: 'el campo url del es requerido!',
+                        },
+                        ]}
+                    >
+                <Input name='name' type='url'/>
+                </Form.Item>
+                </Col>
+            </Row>
+
+            <Row gutter={16}>
                 <Col className="gutter-row" xs={{span: 24}} lg={{span: 12}}>
                 <Form.Item
                       name="start_date"

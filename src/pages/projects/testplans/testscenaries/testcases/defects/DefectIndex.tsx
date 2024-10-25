@@ -10,6 +10,7 @@ import { _IUser, IDefect, ITestCase } from '../../../../../../interfaces/IApp';
 import { useDefect } from '../../../../../../hooks/useDefect';
 import { UIContext } from '../../../../../../context/UIContext';
 import { CreateOrEdit } from './CreateOrEdit';
+import { AuthContext } from '../../../../../../context/auth/AuthContext';
 
 const initialState : IDefect = {
     id: 0,
@@ -30,16 +31,21 @@ export const DefectIndex = ({ testcase } : IForm) => {
     const {getAll, remove, update, items, _getAll} = useDefect();
     const {loading} = useContext(UIContext);
     const [visible, setVisible] = useState(false);
+    const {user} = useContext(AuthContext);
 
     const [formData, setFormData] = useState<IDefect>(initialState);
 
     useEffect(() => {
-        console.log('caso de prueba',testcase)
+      if(user?.role === 'admin' || user?.role === 'tester'){
         if(testcase){
           getAll(testcase?.id)
         }else{
           _getAll()
         } 
+      }else{
+        _getAll(user?.id)
+      }
+        
       }, [testcase]);
 
       //columnas para mostrar en datatable

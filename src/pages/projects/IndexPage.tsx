@@ -14,7 +14,9 @@ export const initialState : IProject = {
   description: '',
   start_date: '',
   end_date: '',
-  status: 'd'
+  status: 'd',
+  repository_name: '',
+  url_repository: ''
 }
 
 export const IndexPage = () => {

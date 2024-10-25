@@ -4,11 +4,13 @@ import { MilestoneIndex } from './milestones/MilestoneIndex';
 import { TestPlanIndex } from './testplans/TestPlanIndex';
 import Title from 'antd/es/typography/Title';
 import { ProjectContext } from '../../context/project/ProjectContext';
-import { BarChartOutlined, FileOutlined, HomeOutlined, InfoCircleOutlined } from '@ant-design/icons';
+import { BarChartOutlined, FileOutlined, GithubFilled, HomeOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { BreadCrubPage } from '../shared/BreadCrubPage';
 import { UIContext } from '../../context/UIContext';
 import { InfoProject } from './InfoProject';
 import { MetricsIndex } from './metrics/MetricsIndex';
+import { IntegrationIndex } from './integrations/IntegrationIndex';
+import { WorkflowIndex } from './workflows/WorkflowIndex';
 
 const {useBreakpoint} = Grid;
 
@@ -57,6 +59,16 @@ export const SubItem = () => {
       key: 'm',
       label: <span><BarChartOutlined /> Métricas</span>,
       children: <> <Divider style={{  borderColor: '#1677ff' }}>METRICAS</Divider> <MetricsIndex/></>,
+    },
+    {
+      key: 'in',
+      label: <span><GithubFilled /> Integración continua info</span>,
+      children: <> <Divider style={{  borderColor: '#1677ff' }}>INTEGRACIONES</Divider> <IntegrationIndex/></>,
+    },
+    {
+      key: 'w',
+      label: <span><GithubFilled /> Flujos de trabajo y pruebas</span>,
+      children: <> <Divider style={{  borderColor: '#1677ff' }}>FLUJOS DE TRABAJO Y PRUEBAS UNITARIAS</Divider> <WorkflowIndex/></>,
     }
   ];
 

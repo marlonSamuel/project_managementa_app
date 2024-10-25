@@ -17,7 +17,7 @@ export const useTask = () => {
     const {project} = useContext(ProjectContext);
     
     //lista inicial de data
-    const getAll = async(page=0) => {
+    const getAll = async() => {
         setLoading(true);
         await api.get<ITask[]>('/tasks/').then(r=> {
             setItems(r.data);

@@ -154,3 +154,52 @@ export interface IMetric {
     completed_defects: number
     reopens_defects: number
   }
+
+  export interface IWorkflowJob {
+    id: number;
+    name?: string;
+    project_id: number;
+    job_id: string;
+    run_id: string;
+    workflow_name?: string;
+    head_branch?: string;
+    run_url?: string;
+    run_attempt?: number;
+    node_id?: string;
+    url?: string;
+    html_url?: string;
+    status?: string;
+    conclusion?: string;
+    created_at?: Date;
+    started_at?: Date;
+    completed_at?: Date;
+    steps?: any;  // Cambiar 'any' a una estructura específica si conoces el tipo de los pasos
+    createdAt?: Date;
+    updatedAt?: Date;
+}
+
+export interface IIntegration {
+    id: number;                     // Identificador único de la integración
+    projectId: number;             // Llave foránea que referencia a la tabla projects
+    ref: string;                    // Referencia
+    _before: string;                 // Estado anterior
+    _after: string;                  // Estado posterior
+    repositoryId: number;          // ID del repositorio
+    repositoryName: string;         // Nombre del repositorio
+    repositoryFullName: string;     // Nombre completo del repositorio
+    pusherName: string;             // Nombre del pusher
+    pusherEmail: string;            // Correo electrónico del pusher
+    commitMessage: string;          // Mensaje del commit
+    commitId: string;               // ID del commit
+    commitTimestamp: Date;          // Fecha y hora del commit
+    commitUrl: string;              // URL del commit
+}
+
+export interface IJobStep {
+    name: string;
+    status: 'queued' | 'in_progress' | 'completed';
+    conclusion: 'success' | 'failure' | 'neutral' | 'cancelled' | 'skipped' | 'timed_out' | 'action_required';
+    number: number;
+    started_at: string; // Puedes usar Date si deseas que se convierta automáticamente a objeto Date en TypeScript
+    completed_at: string;
+}

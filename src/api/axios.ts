@@ -21,7 +21,10 @@ api.interceptors.response.use(resp => {
     return resp;
 }, error => {
     if(error.status === 401){
-        
+        localStorage.removeItem('logged');
+        localStorage.removeItem('token');
+        localStorage.removeItem('refresh_token');
+        window.location.reload();
     }
     return Promise.reject(error.response.data);
 });

@@ -19,12 +19,19 @@ export const useTestPlan = () => {
     const [item, setItem] = useState<ITestPlan | null>(null);
     const {user} = useContext(AuthContext);
     
+    const _getAll = async(user_id = 0) => {
+        let url = '/testplans?user_id='+user_id;
+        setLoading(true);
+        await api.get<ITestPlan[]>(url).then(r=> {
+            setItems(r.data);
+        }).catch(e=>{
+            
+        });
+        setLoading(false);
+    }
     //lista inicial de data
     const getAll = async() => {
         let url = '/testplans/'+project?.id;
-        if(user?.role === 'tester'){
-            url = '/testplans/'+undefined
-        }
         setLoading(true);
         await api.get<ITestPlan[]>(url).then(r=> {
             setItems(r.data);
@@ -97,6 +104,7 @@ export const useTestPlan = () => {
         update,
         remove,
         getAll,
+        _getAll,
         getById,
         item
     }
